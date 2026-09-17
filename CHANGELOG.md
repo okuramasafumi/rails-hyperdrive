@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **The `mcp` dependency now allows 1.x.** The constraint was `~> 0.25`, which
+  excludes every release from 1.0 through 1.5.1, so an application already
+  depending on `mcp` 1.x could not add rails-hyperdrive at all. An application
+  that left `mcp` unpinned got the quieter version of the same problem: bundler
+  resolved by downgrading `mcp` to 0.25.0 without reporting a conflict, and `mcp`
+  is not always a development-only gem in the host application. `--skip-mcp` made
+  no difference, since the dependency is declared in the gemspec either way. The
+  suite passes against every 1.x release.
+
 ## [0.10.0] - 2026-09-09
 
 ### Fixed
